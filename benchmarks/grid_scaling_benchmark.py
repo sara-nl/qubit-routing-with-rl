@@ -22,7 +22,7 @@ def perform_run(nrows, ncols, training_episodes):
     environment = GridEnvironment(nrows,ncols,circuit_generation_function())
     agent = DQNAgent(environment)
 
-    start_time = time_module.clock()
+    start_time = time_module.perf_counter()
 
     train_model(environment, agent, training_episodes=training_episodes, circuit_generation_function=circuit_generation_function, should_print=False)
 
@@ -32,7 +32,7 @@ def perform_run(nrows, ncols, training_episodes):
         actions, circuit_depth = schedule_swaps(environment, agent, circuit=circuit_generation_function(), experience_db=None)
         average_circuit_depth_overhead += (1.0/test_episodes) * (circuit_depth - 1)
 
-    end_time = time_module.clock()
+    end_time = time_module.perf_counter()
 
     total_time = end_time-start_time
 

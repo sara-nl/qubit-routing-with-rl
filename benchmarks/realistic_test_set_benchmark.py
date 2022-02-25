@@ -34,7 +34,7 @@ def train_model_on_random_circuits(model_number):
 def perform_run(initial_locations, model_number):
     model_name = "random_circuits_" + str(model_number)
 
-    start_time = time_module.clock()
+    start_time = time_module.perf_counter()
 
     environment = GridEnvironment(4,4,test_set_circuits[0].to_dqn_rep())
     agent = DQNAgent(environment)
@@ -56,7 +56,7 @@ def perform_run(initial_locations, model_number):
         average_circuit_depth_overhead += (1.0/test_episodes) * (circuit_depth - original_depth)
         average_circuit_depth_ratio += (1.0/test_episodes) * (float(circuit_depth)/float(original_depth))
 
-    end_time = time_module.clock()
+    end_time = time_module.perf_counter()
 
     total_time = end_time-start_time
 

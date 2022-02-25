@@ -39,7 +39,7 @@ test_episodes = 100
 
 def test_parameters(gamma):
 
-    start_time = time_module.clock()
+    start_time = time_module.perf_counter()
 
     environment = GridEnvironment(nrows,ncols,circuit)
     agent = DQNAgent(environment)
@@ -54,7 +54,7 @@ def test_parameters(gamma):
         average_test_time += (1.0/test_episodes) * len(actions)
         average_circuit_depth_overhead += (1.0/test_episodes) * (circuit_depth - 1)
 
-    end_time = time_module.clock()
+    end_time = time_module.perf_counter()
 
     total_time = end_time-start_time
 

@@ -2,11 +2,11 @@
 import numpy as np
 import random
 
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.optimizers import Adam
-from keras.models import model_from_json
-from keras import backend as K
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.models import model_from_json
+from tensorflow.keras import backend as K
 
 from annealers.paired_state_annealer import Annealer
 from utils.PER_memory_tree import Memory
@@ -265,7 +265,12 @@ class DQNAgent:
                 print('------')
                 print()
 
-            self.current_model.fit(NN_input, [target], epochs=1, verbose=0, sample_weight=ISweight)
+            target = np.array(target, dtype=float)
+
+            if target.ndim >= 1:
+                self.current_model.fit(NN_input, target, epochs=1, verbose=0, sample_weight=ISweight)
+            else:
+                continue
 
         self.memory_tree.batch_update(tree_index, absolute_errors)
 

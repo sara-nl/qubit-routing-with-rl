@@ -33,7 +33,7 @@ def train_model_on_full_layers(model_number):
 def perform_run(n_layers, model_number):
     model_name = "full_layers_" + str(model_number)
 
-    start_time = time_module.clock()
+    start_time = time_module.perf_counter()
 
     test_circuit_generation_function = lambda: generate_multi_layer_circuit(20, n_layers)
 
@@ -54,7 +54,7 @@ def perform_run(n_layers, model_number):
         average_circuit_depth_overhead += (1.0/test_episodes) * (circuit_depth - original_depth)
         average_circuit_depth_ratio += (1.0/test_episodes) * (float(circuit_depth)/float(original_depth))
 
-    end_time = time_module.clock()
+    end_time = time_module.perf_counter()
 
     total_time = end_time-start_time
 

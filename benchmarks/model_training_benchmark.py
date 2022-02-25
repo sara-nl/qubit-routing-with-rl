@@ -12,7 +12,7 @@ from utils.experience_db import ExperienceDB
 from agents.model_trainer import train_model
 from agents.swap_scheduler import schedule_swaps
 
-start_time = time_module.clock()
+start_time = time_module.perf_counter()
 
 experiment_name = "temp"
 
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     print('Average time' , average_test_time)
     print('Average depth overhead' , average_circuit_depth_overhead)
 
-    end_time = time_module.clock()
+    end_time = time_module.perf_counter()
 
     total_time = end_time-start_time
 

@@ -33,7 +33,7 @@ def train_model_on_random_circuits(model_number):
 def perform_run(n_gates, model_number):
     model_name = "random_circuits_" + str(model_number)
 
-    start_time = time_module.clock()
+    start_time = time_module.perf_counter()
 
     test_circuit_generation_function = lambda: generate_completely_random_circuit(20, n_gates)
 
@@ -54,7 +54,7 @@ def perform_run(n_gates, model_number):
         average_circuit_depth_overhead += (1.0/test_episodes) * (circuit_depth - original_depth)
         average_circuit_depth_ratio += (1.0/test_episodes) * (float(circuit_depth)/float(original_depth))
 
-    end_time = time_module.clock()
+    end_time = time_module.perf_counter()
 
     total_time = end_time-start_time
 
